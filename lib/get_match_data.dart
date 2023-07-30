@@ -5,7 +5,9 @@ class RiotApiExample extends StatelessWidget {
   final String apiKey =
       'YOUR_API_KEY'; // Replace 'YOUR_API_KEY' with your actual Riot API key
   final String summonerName =
-      'SummonerName'; // Replace this with the summoner name you want to look up
+      'SummonerName';
+
+  const RiotApiExample({super.key}); // Replace this with the summoner name you want to look up
 
   @override
   Widget build(BuildContext context) {
