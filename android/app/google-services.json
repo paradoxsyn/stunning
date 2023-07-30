@@ -1,0 +1,46 @@
+{
+  "project_info": {
+    "project_number": "169611828835",
+    "project_id": "stunning-1ee33",
+    "storage_bucket": "stunning-1ee33.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:169611828835:android:35e5d497da0d80ff2a2256",
+        "android_client_info": {
+          "package_name": "com.example.stunning"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "169611828835-losuimu6uvghaobj7tovoj5m5btdgnqa.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAySS-qn97wVUtxR98bztB4y74P_dVts3Q"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "169611828835-losuimu6uvghaobj7tovoj5m5btdgnqa.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "169611828835-d9n291337d1jrrtci6hhdkdp85dt847d.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.example.stunning"
+              }
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
