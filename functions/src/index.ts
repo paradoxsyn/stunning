@@ -1,22 +1,27 @@
-import * as functions from 'firebase-functions';
-import * as cors from 'cors';
-import * as express from 'express';
-import axios, { AxiosError } from 'axios';
+const { onRequest } = require("firebase-functions/v2/https");
+const express = require('express');
+const {
+  log
+} = require("firebase-functions/logger");
+const axios = require("axios");
 
 const app = express();
 
-// Middleware to enable CORS
-app.use(cors());
-
 // Function to handle API requests
-app.all('/api/*', async (req, res) => {
+app.all('/api/*', async (req: any, res: any) => {
   try {
-    const apiKey = 'RGAPI-40a346c6-d3f7-409d-9578-43091c321ad2';
+    const apiKey = 'RGAPI-27c5144a-1ab4-4a39-a61a-722ba98c55b3';
     const baseUrl = 'https://na1.api.riotgames.com';
     const riotApiPath = req.url.replace('/api', ''); // Remove the "/api" prefix
     const url = `${baseUrl}${riotApiPath}`;
 
-    let response;
+    // Define a default response in case none of the switch cases match
+    let response: any;
+
+    log('GET response', response)
+    log('GET req', req)
+    log('GET url', url)
+    log(res)
 
     switch (req.method) {
       case 'GET':
@@ -53,16 +58,16 @@ app.all('/api/*', async (req, res) => {
         return res.status(405).json({ error: 'Method not allowed' });
     }
 
+    // Ensure that a response is returned in all cases
     res.json(response.data);
-  } catch (error) {
-    if (axios.isAxiosError(error)) {
+  } catch (error: any) {
+
       const statusCode = error.response?.status || 500;
       const responseData = error.response?.data || { error: 'Unknown error' };
       return res.status(statusCode).json(responseData);
-    }
-    res.status(500).json({ error: 'Unknown error' });
   }
+  return res.end();
 });
 
 // Export the Cloud Function
-export const proxy = functions.https.onRequest(app);
+export const proxy = onRequest({ cors: true }, app);
