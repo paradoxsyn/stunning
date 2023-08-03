@@ -1,26 +1,33 @@
 import 'package:flutter/material.dart';
 import 'api.dart';
+import 'analytics_service.dart';
 
 class SummonerSearchPage extends StatefulWidget {
-  const SummonerSearchPage({super.key});
+  const SummonerSearchPage({
+    super.key,
+  });
 
   @override
   SummonerSearchPageState createState() => SummonerSearchPageState();
 }
 
 class SummonerSearchPageState extends State<SummonerSearchPage> {
-  final String apiKey = 'RGAPI-40a346c6-d3f7-409d-9578-43091c321ad2';
   final TextEditingController _summonerController = TextEditingController();
+  final AnalyticsService _analyticsService = AnalyticsService();
   Map<String, dynamic> _summonerData = {};
 
   void _searchSummoner() async {
     final summonerName = _summonerController.text;
 
     try {
-      final summonerData = await fetchSummonerData(summonerName, apiKey);
+      final summonerData = await fetchSummonerData(summonerName);
       setState(() {
         _summonerData = summonerData;
       });
+
+      // Log a custom event using AnalyticsService
+      _analyticsService
+          .trackEvent('summoner_search', {'summoner_name': summonerName});
     } catch (e) {
       print('Error: $e');
     }

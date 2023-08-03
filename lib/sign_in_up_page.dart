@@ -69,7 +69,8 @@ class SignInUpPageState extends State<SignInUpPage> {
               ),
               const SizedBox(height: 12.0),
               ElevatedButton(
-                onPressed: _resetPassword, // Call the reset password method
+                onPressed: () =>
+                    _resetPassword(context), // Call the reset password method
                 child: const Text('Reset Password'),
               ),
               const SizedBox(height: 12.0),
@@ -153,13 +154,13 @@ class SignInUpPageState extends State<SignInUpPage> {
     await user.sendEmailVerification();
   }
 
-  void _resetPassword() async {
+  void _resetPassword(BuildContext context) async {
     String email = _emailController.text.trim();
+    final scaffoldMessenger = ScaffoldMessenger.of(context);
 
     try {
       await FirebaseAuth.instance.sendPasswordResetEmail(email: email);
       // Password reset email sent successfully, show a success message
-      final scaffoldMessenger = ScaffoldMessenger.of(context);
       scaffoldMessenger.showSnackBar(
         const SnackBar(
           content: Text('Password reset email sent. Check your email inbox.'),

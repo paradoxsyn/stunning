@@ -10,7 +10,7 @@ const app = express();
 // Function to handle API requests
 app.all('/api/*', async (req: any, res: any) => {
   try {
-    const apiKey = 'RGAPI-27c5144a-1ab4-4a39-a61a-722ba98c55b3';
+    const apiKey = 'RGAPI-a4ee5246-0f0e-4c89-8a8c-269e4155f767';
     const baseUrl = 'https://na1.api.riotgames.com';
     const riotApiPath = req.url.replace('/api', ''); // Remove the "/api" prefix
     const url = `${baseUrl}${riotApiPath}`;
